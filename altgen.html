@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roblox Alt Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 900px;
+      width: 100%;
+      background: #222;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .card {
+      background: #333;
+      padding: 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+    h1, h2 {
+      margin: 0 0 10px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border-radius: 6px;
+      border: none;
+    }
+    button {
+      padding: 8px 14px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .generate {
+      background: #007bff;
+      color: white;
+    }
+    .export-btns button {
+      background: #555;
+      color: white;
+      margin-right: 5px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 6px;
+      border-bottom: 1px solid #444;
+    }
+    .account-list-wrapper {
+      margin-top: 10px;
+      flex: 1;
+      overflow-y: auto;
+      max-height: 300px;
+    }
+    .popup {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #444;
+      padding: 10px 15px;
+      border-radius: 8px;
+      display: none;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup" id="popup">New account generated!</div>
+  <div class="container">
+    <!-- Settings Panel -->
+    <div class="card">
+      <h1>Togore Alt Gen</h1>
+      <p>Offline, private username/password generator for testing apps. No data leaves your device unless you export it.</p>
+
+      <label>Generated Username</label>
+      <input type="text" id="username" readonly>
+
+      <label>Generated Password</label>
+      <input type="text" id="password" readonly>
+
+      <button class="generate" onclick="handleGenerate()">Generate</button>
+      <p style="font-size: 12px; color: gray;">⚠️ This tool is for fun and personal use only — not for ban evasion or violating Roblox rules.</p>
+    </div>
+
+    <!-- Results Panel -->
+    <div class="card">
+      <h2>Generated Accounts</h2>
+      <div class="export-btns">
+        <button onclick="copyAll()">Copy All</button>
+        <button onclick="exportCSV()">Export CSV</button>
+        <button onclick="exportJSON()">Export JSON</button>
+      </div>
+
+      <div class="account-list-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Password</th>
+            </tr>
+          </thead>
+          <tbody id="accountList">
+            <tr><td colspan="2" style="text-align:center;">No accounts generated yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let accounts = JSON.parse(localStorage.getItem("robloxAltAccounts")) || [];
+
+    function showPopup(msg) {
+      const popup = document.getElementById("popup");
+      popup.innerText = msg;
+      popup.style.display = "block";
+      setTimeout(() => popup.style.display = "none", 2000);
+    }
+
+    function generateUsername() {
+      const adjectives = ["Cool", "Fast", "Epic", "Dark", "Happy", "Mega", "Ultra"];
+      const nouns = ["Builder", "Noob", "Warrior", "Knight", "Player", "Dev"];
+      const numbers = Math.floor(Math.random() * 9999);
+      return adjectives[Math.floor(Math.random() * adjectives.length)] +
+             nouns[Math.floor(Math.random() * nouns.length)] +
+             numbers;
+    }
+
+    function generatePassword() {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+      let pass = "";
+      for (let i = 0; i < 12; i++) pass += chars.charAt(Math.floor(Math.random() * chars.length));
+      return pass;
+    }
+
+    function handleGenerate() {
+      const username = generateUsername();
+      const password = generatePassword();
+      document.getElementById("username").value = username;
+      document.getElementById("password").value = password;
+      accounts.push({ username, password });
+      localStorage.setItem("robloxAltAccounts", JSON.stringify(accounts));
+      renderAccounts();
+      showPopup("New account generated!");
+    }
+
+    function renderAccounts() {
+      const list = document.getElementById("accountList");
+      list.innerHTML = "";
+      if (accounts.length === 0) {
+        list.innerHTML = '<tr><td colspan="2" style="text-align:center;">No accounts generated yet.</td></tr>';
+        return;
+      }
+      accounts.forEach(acc => {
+        const row = `<tr><td>${acc.username}</td><td>${acc.password}</td></tr>`;
+        list.innerHTML += row;
+      });
+    }
+
+    function copyAll() {
+      const text = accounts.map(a => `${a.username}:${a.password}`).join("\n");
+      navigator.clipboard.writeText(text);
+      showPopup("All accounts copied!");
+    }
+
+    function exportCSV() {
+      let csv = "Username,Password\n";
+      accounts.forEach(a => { csv += `${a.username},${a.password}\n`; });
+      const blob = new Blob([csv], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "accounts.csv";
+      a.click();
+    }
+
+    function exportJSON() {
+      const blob = new Blob([JSON.stringify(accounts, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "accounts.json";
+      a.click();
+    }
+
+    renderAccounts();
+  </script>
+</body>
+</html>
