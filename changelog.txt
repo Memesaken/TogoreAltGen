@@ -1,3 +1,1 @@
-Added a new theme called [big shot]
-Tweaked the retro theme a bit
-check out the [big shot] theme
+removed some useless acc info
