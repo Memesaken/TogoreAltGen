@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Togore Alt Gen — Beta</title>
 
-  <!-- Website icon (favicon) -->
   <link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/KxQmZrkm/Togore-art-2-removebg-preview.png">
   <link rel="icon" type="image/png" sizes="192x192" href="https://i.ibb.co/KxQmZrkm/Togore-art-2-removebg-preview.png">
   <link rel="apple-touch-icon" href="https://i.ibb.co/KxQmZrkm/Togore-art-2-removebg-preview.png">
@@ -52,12 +51,12 @@
       --chipBase: #0f2016; --good: #39ff88; --warn: #ffd166; --bad: #ff8aa6;
     }
 
-    /* [big shot] — Pink & Yellow theme */
+    /* [big shot] — Pink & Yellow */
     body[data-theme="bigshot"] {
-      --flashBlue: #ff6ec7; /* pink glow */
+      --flashBlue: #ff6ec7;
       --bg0: #2a0b22; --bg1: #3a102e; --bg2: #4a1236; --card: #2b1524;
       --text: #fff7fb; --subtext: #ffd1eb; --primary: #ff43b0; --primary-2: #ffd84f;
-      --accent: #ffa94d; --muted: #3a1a2d; --border: 1px solid rgba(255, 105, 180, .2);
+      --accent: #ffa94d; --muted: #3a1a2d; --border: 1px solid rgba(255,105,180,.2);
       --radius: 14px; --shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05);
       --activeNavBg: #3b1530; --btnBg: linear-gradient(135deg, var(--primary), var(--primary-2));
       --btnSecondary: #432036; --surfaceA: #3a1830; --surfaceB: #2c1225;
@@ -88,7 +87,6 @@
     .theme-switcher { margin: 10px 8px 0; }
     .theme-switcher select { width: 100%; background: var(--fieldBg); color: var(--text); padding: 8px 10px; border-radius: 10px; border: var(--border); }
 
-    /* Music block */
     .music { margin: 10px 8px 0; background: var(--fieldBg); border: var(--border); border-radius: 12px; padding: 10px; }
     .music .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     .music input[type="range"] { width: 100%; }
@@ -104,14 +102,8 @@
     .card h2 { margin: 0 0 12px; font-size: 16px; }
     .card .inner { padding: 18px; }
 
-    /* Radio "buttons" */
     .option-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; margin-bottom: 8px; }
-    label.option {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 10px 16px; white-space: nowrap; min-height: 40px;
-      background: var(--fieldBg); border: var(--border); border-radius: 14px;
-      line-height: 1.25; user-select: none;
-    }
+    label.option { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; white-space: nowrap; min-height: 40px; background: var(--fieldBg); border: var(--border); border-radius: 14px; line-height: 1.25; user-select: none; }
     .option input { margin: 0; accent-color: var(--accent); }
 
     .muted { color: var(--subtext); font-size: 13px; }
@@ -119,7 +111,6 @@
     .btn { background: var(--btnBg); border: none; color: white; padding: 12px 18px; border-radius: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 20px rgba(138,99,247,.35); line-height: 1.25; display: inline-flex; align-items: center; gap: 8px; }
     .btn:active { transform: translateY(1px); }
     .btn.secondary { background: var(--btnSecondary); box-shadow: none; color: var(--text); }
-    .btn.row { display:inline-flex; align-items:center; gap:8px; }
     .btn[disabled] { opacity: 0.65; cursor: not-allowed; filter: grayscale(0.2); }
 
     .field { display: grid; grid-template-columns: 220px 1fr auto; gap: 10px; align-items: center; margin: 12px 0; }
@@ -137,7 +128,6 @@
     .actions { display:flex; gap:6px; }
     .small { font-size: 12px; color: var(--subtext); }
 
-    /* Click flash (uses --flashBlue; green in retro, pink in bigshot) */
     .flash {
       outline: 2px solid var(--flashBlue);
       box-shadow: 0 0 0 4px color-mix(in srgb, var(--flashBlue) 25%, transparent),
@@ -145,7 +135,6 @@
       transition: box-shadow .3s ease;
     }
 
-    /* Cooldown UI */
     .countdown-wrap { margin-top: 10px; }
     .progress { width: 100%; height: 8px; background: rgba(90,162,255,0.15); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); display: none; }
     .progress .bar { height: 100%; width: 0%; background: var(--accent); transition: width 0.1s linear; }
@@ -219,7 +208,6 @@
           <div class="card">
             <div class="inner">
               <h2>Account Type Selection</h2>
-              <!-- changed text -->
               <div class="muted">create your alt here!</div>
 
               <div class="option-row">
@@ -235,7 +223,6 @@
                 <button id="exportBtn" class="btn secondary">Export JSON</button>
               </div>
 
-              <!-- Cooldown UI -->
               <div class="countdown-wrap small" id="genCountdownText" style="display:none; color: var(--subtext); margin-top:8px;"></div>
               <div class="progress" id="genProgressWrap"><div class="bar" id="genProgressBar"></div></div>
             </div>
@@ -263,17 +250,7 @@
                 <button data-copy="combo" class="copy">📋</button>
               </div>
 
-              <div class="field">
-                <label>Account ID</label>
-                <div id="accountId" class="value">—</div>
-                <button data-copy="accountId" class="copy">📋</button>
-              </div>
-
-              <div class="field">
-                <label>Created</label>
-                <div id="created" class="value">—</div>
-                <button data-copy="created" class="copy">📋</button>
-              </div>
+              <!-- Account ID and Created are removed from the panel -->
 
               <div class="field">
                 <label>Status</label>
@@ -304,8 +281,6 @@
                   <th>Username</th>
                   <th>Password</th>
                   <th>Type</th>
-                  <th>Account ID</th>
-                  <th>Created</th>
                   <th>Status</th>
                   <th>Actions</th>
                 </tr>
@@ -318,7 +293,6 @@
     </main>
   </div>
 
-  <!-- Native audio (music switches per theme) -->
   <audio id="bgm" preload="auto" loop style="display:none"></audio>
 
   <script>
@@ -327,20 +301,17 @@
     const THEME_KEY = 'togore-theme';
     const STATUS_LABEL = 'Working if you make the account yourself';
 
-    // Logos and names
     const LOGO_DEFAULT = 'https://i.ibb.co/KxQmZrkm/Togore-art-2-removebg-preview.png';
     const LOGO_BIGSHOT = 'https://i.ibb.co/HTffXKLk/Spamton-battle-static.png';
     const NAME_DEFAULT = 'Togore Alt Gen';
     const NAME_BIGSHOT = 'spamton alt gen';
     const BIGSHOT_PHRASE = "now's your chance to be a big shot!";
 
-    // Music settings
     const MUSIC_ENABLED_KEY = 'togore-music-enabled';
     const MUSIC_VOLUME_KEY  = 'togore-music-volume';
     const MUSIC_URL_DEFAULT = 'https://www.dropbox.com/scl/fi/1vs8cqi0bxsiikz73jpxf/TOGORE-TUSSLE-TheDanypie-SoundLoadMate.com.mp3?rlkey=x4n6mxpvqsz6vngj0kqs7dxir&raw=1';
     const MUSIC_URL_BIGSHOT = 'https://www.dropbox.com/scl/fi/mgy8qmoot9kt27fqin8b3/SpotiDownloader.com-NOW-S-YOUR-CHANCE-TO-BE-A-Toby-Fox.mp3?rlkey=k7d0mq0e13mi07pcbz1z34ind&raw=1';
 
-    // Generate cooldown (5s)
     const GEN_COOLDOWN_MS = 5000;
     const COOLDOWN_KEY = 'togore-genCooldownEnd';
     let cooldownTimer = null;
@@ -348,64 +319,105 @@
     function load() { try { state.accounts = JSON.parse(localStorage.getItem(LS_KEY) || '[]'); } catch { state.accounts = []; } }
     function persist() { localStorage.setItem(LS_KEY, JSON.stringify(state.accounts)); }
 
+    // Username pools (extra nouns added back)
     const adjectives = ['Ultra','Frost','Cosmic','Nebula','Quantum','Echo','Shadow','Crimson','Pixel','Glitch','Aqua','Blaze','Nova','Arc','Lunar','Solar','Drift','Swift','Vortex','Nimbus','Cyber','Arctic','Turbo','Phantom','Zen','Omega','Delta','Silent','Rapid','Mellow','Primal','Iron','Copper','Golden','Emerald','Sapphire','Ruby','Ivory','Obsidian','Cobalt','Scarlet','Azure','Indigo','Vivid','Wild','Feral','Misty','Stormy','Frozen','Blazing','Hidden','Stealth','Arcane','Mythic','Galactic','Atomic','Hyper','Micro','Nano','Mega','Giga','Terra','Stellar','Polar','Breezy','Windy','Electric','Neon','Retro','Analog','Digital','Holo','Prime','Fuzzy','Funky','Velvet'];
-    const nouns = ['Raven','Tiger','Falcon','Blizzard','Comet','Rider','Knight','Ninja','Wizard','Voyager','Spectre','Pioneer','Saber','Echo','Ranger','Samurai','Sentinel','Drifter','Golem','Warden','Skipper','Quasar','Otter','Wolf','Eagle','Viper','Panther','Fox','Hawk','Cobra','Dragon','Phoenix','Hydra','Griffin','Mammoth','Yeti','Kraken','Badger','Bear','Bison','Shark','Piranha','Dolphin','Narwhal','Orca','Puma','Jaguar','Lynx','Leopard','Cheetah','Rhino','Stallion','Mustang','Raptor','Meteor','Astro','Rocket','Saturn','Neptune','Pluto','Cipher','Matrix','Agent','Scout','Miner','Pilot','Captain','Sailor','Scribe','Nomad','Hermit','Gunner','Sniper','Coder','Builder','Crafter','Smith'];
+    const nouns = ['Raven','Tiger','Falcon','Blizzard','Comet','Rider','Knight','Ninja','Wizard','Voyager','Spectre','Pioneer','Saber','Echo','Ranger','Samurai','Sentinel','Drifter','Golem','Warden','Skipper','Quasar','Otter','Wolf','Eagle','Viper','Panther','Fox','Hawk','Cobra','Dragon','Phoenix','Hydra','Griffin','Mammoth','Yeti','Kraken','Badger','Bear','Bison','Shark','Piranha','Dolphin','Narwhal','Orca','Puma','Jaguar','Lynx','Leopard','Cheetah','Rhino','Stallion','Mustang','Raptor','Meteor','Astro','Rocket','Saturn','Neptune','Pluto','Cipher','Matrix','Agent','Scout','Miner','Pilot','Captain','Sailor','Scribe','Nomad','Hermit','Gunner','Sniper','Coder','Builder','Crafter','Smith','Retro','Noob','Sonic','Tails'];
+
     const symbols = '!@#$%^&*()_+{}[]<>?';
     const digits  = '0123456789';
     const lowers  = 'abcdefghijklmnopqrstuvwxyz';
     const uppers  = lowers.toUpperCase();
+
     const pick = arr => arr[Math.floor(Math.random() * arr.length)];
     const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
     function randomUsername(type='alt') {
-      const year = type === 'alt' ? rand(2020, new Date().getFullYear()) : rand(2015, new Date().getFullYear());
+      const year = type === 'alt' ? rand(2020, new Date().getFullYear())
+                                  : rand(2015, new Date().getFullYear());
       return `${pick(adjectives)}${pick(nouns)}${year}${rand(10, 99)}`;
     }
+
     function strongPassword(len=16) {
-      function take(s) { return s[rand(0, s.length-1)]; }
+      function take(src) { return src[rand(0, src.length-1)]; }
       const pool = uppers + lowers + digits + symbols;
       const out = [take(uppers), take(lowers), take(digits), take(symbols)];
       while (out.length < len) out.push(take(pool));
-      for (let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}
+      for (let i = out.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [out[i], out[j]] = [out[j], out[i]];
+      }
       return out.join('');
     }
-    function randomAccountId(){ let s=''; for(let i=0;i<rand(9,10);i++) s+=digits[rand(0,9)]; return s; }
-    function randomDate(type){ const start=new Date(type==='random'?'2015-01-01':'2020-01-01'); const end=new Date(); return new Date(start.getTime()+Math.random()*(end.getTime()-start.getTime())); }
-    function fmtDate(d){ return d.toLocaleString([], {year:'numeric', month:'short', day:'2-digit', hour:'2-digit', minute:'2-digit'}); }
+
+    function randomDate(type) {
+      const start = new Date(type==='random' ? '2015-01-01' : '2020-01-01');
+      const end = new Date();
+      return new Date(start.getTime() + Math.random()*(end.getTime()-start.getTime()));
+    }
+
+    function fmtDate(d) {
+      return d.toLocaleString([], {year:'numeric', month:'short', day:'2-digit', hour:'2-digit', minute:'2-digit'});
+    }
 
     function calcStats(){
-      const now=new Date(); const startToday=new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
-      const startWeek=startToday-6*24*3600*1000; const startMonth=new Date(now.getFullYear(), now.getMonth(), 1).getTime();
-      let today=0, week=0, month=0, total=state.accounts.length; const byDay=new Set();
-      for(const a of state.accounts){ const t=new Date(a.createdAt).getTime(); const dayKey=new Date(new Date(a.createdAt).toDateString()).getTime();
-        byDay.add(dayKey); if(t>=startToday) today++; if(t>=startWeek) week++; if(t>=startMonth) month++; }
-      let streak=0; const days=[...byDay].sort((a,b)=>b-a); let cursor=startToday;
-      for(const d of days){ if(d===cursor){ streak++; cursor-=24*3600*1000; } else if(d<cursor) break; }
-      const set=(id,v)=>{const el=document.getElementById(id); if(el) el.textContent=v;};
-      set('today',today); set('week',week); set('month',month); set('total',total); set('streak',streak); set('countAll',total);
+      const now = new Date();
+      const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+      const startOfWeek = startOfToday - 6*24*3600*1000;
+      const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).getTime();
+
+      let today=0, week=0, month=0, total=state.accounts.length;
+      const byDay = new Set();
+
+      for (const a of state.accounts) {
+        const t = new Date(a.createdAt).getTime();
+        const dayKey = new Date(new Date(a.createdAt).toDateString()).getTime();
+        byDay.add(dayKey);
+        if (t >= startOfToday) today++;
+        if (t >= startOfWeek) week++;
+        if (t >= startOfMonth) month++;
+      }
+
+      let streak = 0;
+      const days = [...byDay].sort((a,b)=>b-a);
+      let cursor = startOfToday;
+      for (const d of days) {
+        if (d === cursor) { streak++; cursor -= 24*3600*1000; }
+        else if (d < cursor) break;
+      }
+
+      const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+      set('today', today); set('week', week); set('month', month); set('total', total); set('streak', streak); set('countAll', total);
     }
 
     function renderCurrent(){
-      const a=state.current, set=(id,v)=>{const el=document.getElementById(id); if(el) el.textContent=v??'—';};
-      if(!a){ set('username','—'); set('password','—'); set('combo','—'); set('accountId','—'); set('created','—');
-        document.getElementById('cardTitle').textContent='Generated Account'; document.getElementById('statusWorking').textContent=STATUS_LABEL; return; }
-      set('username',a.username); set('password',a.password); set('combo',`${a.username}:${a.password}`);
-      set('accountId',a.accountId); set('created',fmtDate(new Date(a.createdAt)));
+      const a = state.current;
+      const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v ?? '—'; };
+      if (!a) {
+        set('username','—'); set('password','—'); set('combo','—');
+        document.getElementById('cardTitle').textContent = 'Generated Account';
+        document.getElementById('statusWorking').textContent = STATUS_LABEL;
+        return;
+      }
+      set('username', a.username);
+      set('password', a.password);
+      set('combo', `${a.username}:${a.password}`);
       document.getElementById('cardTitle').textContent = a.username;
       document.getElementById('statusWorking').textContent = STATUS_LABEL;
     }
 
     function renderAllTable(filter=''){
-      const tbody=document.getElementById('tbodyAll'); if(!tbody) return;
-      tbody.innerHTML=''; const rows=state.accounts.filter(a=>a.username.toLowerCase().includes(filter.toLowerCase())).slice().reverse();
-      for(const a of rows){
-        const tr=document.createElement('tr');
-        tr.innerHTML=`
+      const tbody = document.getElementById('tbodyAll'); if (!tbody) return;
+      tbody.innerHTML = '';
+      const rows = state.accounts
+        .filter(a => a.username.toLowerCase().includes(filter.toLowerCase()))
+        .slice()
+        .reverse();
+      for (const a of rows) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
           <td>${a.username}</td>
           <td class="small">${a.password}</td>
           <td class="small">${a.type}</td>
-          <td>${a.accountId}</td>
-          <td class="small">${fmtDate(new Date(a.createdAt))}</td>
           <td class="small">${STATUS_LABEL}</td>
           <td class="actions">
             <button class="copy" data-cp="${a.username}:${a.password}">Copy u:p</button>
@@ -416,23 +428,27 @@
       document.getElementById('countAll').textContent = state.accounts.length;
     }
 
-    // Generate once (then apply cooldown)
     function onGenerateClick(){
       const btn = document.getElementById('generateBtn');
-      if (btn.disabled) return; // still on cooldown
+      if (btn.disabled) return;
       const type = document.querySelector('input[name="type"]:checked').value;
 
-      const account={ id: crypto.randomUUID?crypto.randomUUID():String(Math.random()).slice(2),
-        username: randomUsername(type), password: strongPassword(16), type,
-        accountId: randomAccountId(), createdAt: randomDate(type).toISOString(), status: STATUS_LABEL };
-      state.accounts.push(account); state.current=account; persist(); calcStats(); renderCurrent();
-      renderAllTable(document.getElementById('filterInput')?.value||''); flashBlue(btn);
-
+      const account = {
+        id: crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2),
+        username: randomUsername(type),
+        password: strongPassword(16),
+        type,
+        // createdAt is kept internally for stats; not shown in UI
+        createdAt: randomDate(type).toISOString(),
+        status: STATUS_LABEL
+      };
+      state.accounts.push(account);
+      state.current = account;
+      persist(); calcStats(); renderCurrent();
+      renderAllTable(document.getElementById('filterInput')?.value || ''); flashBlue(btn);
       startCooldown(GEN_COOLDOWN_MS);
     }
 
-    // Cooldown helpers
-    const COOLDOWN_TEXT = 'Next generate available in';
     function startCooldown(ms){
       const btn = document.getElementById('generateBtn');
       const text = document.getElementById('genCountdownText');
@@ -454,7 +470,7 @@
         const remaining = Math.max(0, end - now);
         const remainSec = Math.ceil(remaining / 1000);
         const pct = Math.min(100, Math.round(((ms - remaining) / ms) * 100));
-        text.textContent = `${COOLDOWN_TEXT} ${remainSec}s`;
+        text.textContent = `Next generate available in ${remainSec}s`;
         bar.style.width = pct + '%';
 
         if (remaining <= 0){
@@ -462,7 +478,6 @@
           btn.disabled = false;
           text.style.display = 'none';
           wrap.style.display = 'none';
-          text.textContent = '';
           bar.style.width = '0%';
           localStorage.removeItem(COOLDOWN_KEY);
         }
@@ -473,82 +488,57 @@
 
     function restoreCooldown(){
       const end = parseInt(localStorage.getItem(COOLDOWN_KEY) || '0', 10);
-      const now = Date.now();
-      if (end > now){
-        startCooldown(end - now);
-      } else {
-        localStorage.removeItem(COOLDOWN_KEY);
-      }
+      if (end > Date.now()) startCooldown(end - Date.now());
+      else localStorage.removeItem(COOLDOWN_KEY);
     }
 
     function clearAll(){
-      if(!confirm('remove accounts?')) return;
-      state.accounts=[]; state.current=null; persist(); calcStats(); renderCurrent();
-      renderAllTable(document.getElementById('filterInput')?.value||'');
+      if (!confirm('remove accounts?')) return;
+      state.accounts = [];
+      state.current = null;
+      persist(); calcStats(); renderCurrent();
+      renderAllTable(document.getElementById('filterInput')?.value || '');
     }
 
     function exportJSON(){
-      const blob=new Blob([JSON.stringify(state.accounts,null,2)],{type:'application/json'});
-      const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='togore-beta-accounts.json'; a.click(); URL.revokeObjectURL(url);
+      const blob = new Blob([JSON.stringify(state.accounts, null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'togore-beta-accounts.json'; a.click();
+      URL.revokeObjectURL(url);
     }
 
-    function flashBlue(el){ if(!el) return; el.classList.add('flash'); setTimeout(()=>el.classList.remove('flash'),1500); }
+    function flashBlue(el){ if (!el) return; el.classList.add('flash'); setTimeout(()=>el.classList.remove('flash'), 1500); }
 
-    // Brand + Big Shot text replacement
     function updateBrandForTheme(theme){
       const logoEl = document.querySelector('.brand .logo');
       const nameEl = document.querySelector('.brand-name');
       if (theme === 'bigshot') {
         if (!logoEl.dataset.orig) logoEl.dataset.orig = logoEl.src;
         if (!nameEl.dataset.orig) nameEl.dataset.orig = nameEl.textContent;
-        logoEl.src = LOGO_BIGSHOT;
-        nameEl.textContent = NAME_BIGSHOT;
+        logoEl.src = LOGO_BIGSHOT; nameEl.textContent = NAME_BIGSHOT;
       } else {
         if (logoEl.dataset.orig) logoEl.src = logoEl.dataset.orig;
         if (nameEl.dataset.orig) nameEl.textContent = nameEl.dataset.orig;
       }
     }
 
-    // Replace a bunch of visible texts with the Big Shot phrase (and restore)
-    const BS_SELECTORS = [
-      '.brand-sub',
-      '.card h2',
-      '.muted',
-      '.btn',
-      '.stat h3',
-      '.field label',
-      '.status-row .chip',
-      'th',
-      'h4' // section headers in sidebar
-    ];
+    const BIGSHOT_SELECTORS = ['.brand-sub','.card h2','.muted','.btn','.stat h3','.field label','.status-row .chip','th','h4'];
     function bigshotChant(enable){
-      const list = document.querySelectorAll(BS_SELECTORS.join(','));
-      list.forEach(el => {
-        // Preserve radio labels' inputs
+      const list=document.querySelectorAll(BIGSHOT_SELECTORS.join(','));
+      list.forEach(el=>{
         if (el.matches('label.option')) return;
-        if (enable) {
-          if (!el.dataset.origText) el.dataset.origText = el.textContent;
-          el.textContent = BIGSHOT_PHRASE;
-        } else if (el.dataset.origText) {
-          el.textContent = el.dataset.origText;
-          delete el.dataset.origText;
-        }
+        if (enable) { if (!el.dataset.origText) el.dataset.origText = el.textContent; el.textContent = BIGSHOT_PHRASE; }
+        else if (el.dataset.origText) { el.textContent = el.dataset.origText; delete el.dataset.origText; }
       });
-      // Special-case radio labels (keep inputs intact)
-      document.querySelectorAll('label.option').forEach(label => {
+      document.querySelectorAll('label.option').forEach(label=>{
         const input = label.querySelector('input');
-        if (enable) {
-          if (!label.dataset.origHtml) label.dataset.origHtml = label.innerHTML;
-          label.innerHTML = input.outerHTML + ' ' + BIGSHOT_PHRASE;
-        } else if (label.dataset.origHtml) {
-          label.innerHTML = label.dataset.origHtml;
-          delete label.dataset.origHtml;
-        }
+        if (enable) { if (!label.dataset.origHtml) label.dataset.origHtml = label.innerHTML; label.innerHTML = input.outerHTML + ' ' + BIGSHOT_PHRASE; }
+        else if (label.dataset.origHtml) { label.innerHTML = label.dataset.origHtml; delete label.dataset.origHtml; }
       });
     }
 
-    // MUSIC
-    function initMusic() {
+    function initMusic(){
       const audio = document.getElementById('bgm');
       const toggle = document.getElementById('musicToggle');
       const vol = document.getElementById('musicVol');
@@ -558,8 +548,7 @@
 
       const savedVol = parseFloat(localStorage.getItem(MUSIC_VOLUME_KEY) || '0.5');
       const volVal = isNaN(savedVol) ? 0.5 : savedVol;
-      vol.value = volVal;
-      audio.volume = volVal;
+      vol.value = volVal; audio.volume = volVal;
 
       const enabled = localStorage.getItem(MUSIC_ENABLED_KEY) === '1';
       toggle.checked = enabled;
@@ -569,18 +558,10 @@
       toggle.addEventListener('change', async () => {
         localStorage.setItem(MUSIC_ENABLED_KEY, toggle.checked ? '1' : '0');
         try {
-          if (toggle.checked) {
-            await audio.play();
-            statusEl.textContent = 'Playing';
-            statusEl.style.color = 'var(--good)';
-          } else {
-            audio.pause();
-            statusEl.textContent = 'Paused';
-            statusEl.style.color = 'var(--subtext)';
-          }
+          if (toggle.checked) { await audio.play(); statusEl.textContent = 'Playing'; statusEl.style.color = 'var(--good)'; }
+          else { audio.pause(); statusEl.textContent = 'Paused'; statusEl.style.color = 'var(--subtext)'; }
         } catch {
-          toggle.checked = false;
-          localStorage.setItem(MUSIC_ENABLED_KEY, '0');
+          toggle.checked = false; localStorage.setItem(MUSIC_ENABLED_KEY, '0');
           statusEl.textContent = 'Click once on the page, then toggle again (autoplay blocked).';
           statusEl.style.color = 'var(--warn)';
         }
@@ -593,7 +574,6 @@
       });
 
       audio.addEventListener('error', () => {
-        const statusEl = document.getElementById('musicStatus');
         statusEl.textContent = 'Could not load audio. Check the link or host.';
         statusEl.style.color = 'var(--bad)';
       });
@@ -604,47 +584,51 @@
       const toggle = document.getElementById('musicToggle');
       const statusEl = document.getElementById('musicStatus');
       const url = (theme === 'bigshot') ? MUSIC_URL_BIGSHOT : MUSIC_URL_DEFAULT;
-
       if (audio.src !== url) {
         const wasPlaying = !audio.paused;
-        audio.pause();
-        audio.src = url;
-        statusEl.textContent = (theme === 'bigshot') ? "Track: BIG SHOT" : "Track: Default";
+        audio.pause(); audio.src = url;
+        statusEl.textContent = (theme === 'bigshot') ? 'Track: BIG SHOT' : 'Track: Default';
         statusEl.style.color = 'var(--subtext)';
-        if (toggle.checked || wasPlaying) {
-          audio.play().catch(()=>{});
-          statusEl.textContent = 'Playing';
-          statusEl.style.color = 'var(--good)';
-        }
+        if (toggle.checked || wasPlaying) { audio.play().catch(()=>{}); statusEl.textContent = 'Playing'; statusEl.style.color = 'var(--good)'; }
       }
     }
 
     function applyTheme(t){
       document.body.setAttribute('data-theme', t);
       localStorage.setItem(THEME_KEY, t);
-      const sel = document.getElementById('themeSelect');
-      if (sel && sel.value !== t) sel.value = t;
-      updateMusicForTheme(t);
-      updateBrandForTheme(t);
-      bigshotChant(t === 'bigshot');
+      const sel = document.getElementById('themeSelect'); if (sel && sel.value !== t) sel.value = t;
+      updateMusicForTheme(t); updateBrandForTheme(t); bigshotChant(t === 'bigshot');
     }
 
     function switchView(view){
-      state.view=view;
-      document.getElementById('view-generate').style.display=(view==='generate')?'block':'none';
-      document.getElementById('view-accounts').style.display=(view==='accounts')?'block':'none';
-      document.querySelectorAll('.nav a[data-view]').forEach(a=>a.classList.toggle('active',a.dataset.view===view));
-      flashBlue(document.querySelector(`.nav a[data-view="${view}"]`)); calcStats();
-      if(view==='accounts') renderAllTable(document.getElementById('filterInput')?.value||'');
+      state.view = view;
+      document.getElementById('view-generate').style.display = (view === 'generate') ? 'block' : 'none';
+      document.getElementById('view-accounts').style.display = (view === 'accounts') ? 'block' : 'none';
+      document.querySelectorAll('.nav a[data-view]').forEach(a => a.classList.toggle('active', a.dataset.view === view));
+      flashBlue(document.querySelector(`.nav a[data-view="${view}"]`));
+      calcStats();
+      if (view === 'accounts') renderAllTable(document.getElementById('filterInput')?.value || '');
     }
 
     document.addEventListener('click',(e)=>{
       const t=e.target;
-      if(t.matches('button')) flashBlue(t);
-      if(t.matches('.nav a[data-view]')){ e.preventDefault(); switchView(t.dataset.view); }
-      if(t.matches('.copy') && t.dataset.copy){ const text=document.getElementById(t.dataset.copy)?.textContent ?? ''; navigator.clipboard.writeText(text); t.textContent='✅'; setTimeout(()=> t.textContent='📋',700); }
-      if(t.matches('.copy') && t.dataset.cp){ navigator.clipboard.writeText(t.dataset.cp); t.textContent='✅'; setTimeout(()=> t.textContent='Copy u:p',700); }
-      if(t.matches('.copy') && t.dataset.del){ const id=t.dataset.del; state.accounts=state.accounts.filter(a=>a.id!==id); if(state.current&&state.current.id===id) state.current=null; persist(); calcStats(); renderCurrent(); renderAllTable(document.getElementById('filterInput')?.value||''); }
+      if (t.matches('button')) flashBlue(t);
+      if (t.matches('.nav a[data-view]')) { e.preventDefault(); switchView(t.dataset.view); }
+      if (t.matches('.copy') && t.dataset.copy) {
+        const text = document.getElementById(t.dataset.copy)?.textContent ?? '';
+        navigator.clipboard.writeText(text);
+        t.textContent = '✅'; setTimeout(()=> t.textContent = '📋', 700);
+      }
+      if (t.matches('.copy') && t.dataset.cp) {
+        navigator.clipboard.writeText(t.dataset.cp);
+        t.textContent = '✅'; setTimeout(()=> t.textContent = 'Copy u:p', 700);
+      }
+      if (t.matches('.copy') && t.dataset.del) {
+        const id = t.dataset.del;
+        state.accounts = state.accounts.filter(a => a.id !== id);
+        if (state.current && state.current.id === id) state.current = null;
+        persist(); calcStats(); renderCurrent(); renderAllTable(document.getElementById('filterInput')?.value || '');
+      }
     });
 
     document.getElementById('generateBtn').addEventListener('click', onGenerateClick);
