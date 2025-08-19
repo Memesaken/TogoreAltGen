@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Togore Alt Gen</title>
+  <title>Togore Alt Gen — Beta</title>
 
   <!-- Website icon (favicon) -->
   <link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/KxQmZrkm/Togore-art-2-removebg-preview.png">
@@ -26,6 +26,7 @@
       --surfaceC: #1c1844; --surfaceD: #141233; --fieldBg: #191741; --copyBg: #242158;
       --chipBase: #232158; --good: #3bd4a5; --warn: #ffcc66; --bad: #ff6b6b;
     }
+
     /* Light */
     body[data-theme="light"] {
       --bg0: #f5f7ff; --bg1: #eef1ff; --bg2: #dde4ff; --card: #ffffff;
@@ -37,24 +38,40 @@
       --surfaceC: #ffffff; --surfaceD: #ffffff; --fieldBg: #f1f3ff; --copyBg: #e8ebff;
       --chipBase: #edf0ff; --good: #17b890; --warn: #d9931c; --bad: #e05252;
     }
-    /* Retro */
+
+    /* Retro — Black & Green (green glow) */
     body[data-theme="retro"] {
-      --bg0: #0f0b1f; --bg1: #1a103b; --bg2: #240d47; --card: #1b1438;
-      --text: #f0eaff; --subtext: #c2b6ff; --primary: #ff00d4; --primary-2: #00fff0;
-      --accent: #28a8ff; --muted: #2b1a66; --border: 1px solid rgba(255,255,255,0.08);
-      --radius: 14px; --shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.04);
-      --activeNavBg: #2a1566; --btnBg: linear-gradient(135deg, var(--primary), var(--primary-2));
-      --btnSecondary: #2a1a60; --surfaceA: #23124e; --surfaceB: #1a0d3c;
-      --surfaceC: #241052; --surfaceD: #1b0e3b; --fieldBg: #1d1443; --copyBg: #26185a;
-      --chipBase: #2a1860; --good: #60ffcf; --warn: #ffd166; --bad: #ff8aa6;
+      --flashBlue: #39ff88;
+      --bg0: #050805; --bg1: #08130b; --bg2: #0c1f13; --card: #0b1410;
+      --text: #e8ffe9; --subtext: #96e7a9; --primary: #00ff7a; --primary-2: #00d46a;
+      --accent: #2cff88; --muted: #0e2418; --border: 1px solid rgba(44,255,136,0.14);
+      --radius: 14px; --shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(44,255,136,0.05);
+      --activeNavBg: #0f1d14; --btnBg: linear-gradient(135deg, var(--primary), var(--primary-2));
+      --btnSecondary: #0d1b13; --surfaceA: #0e1a13; --surfaceB: #0a130e;
+      --surfaceC: #0f1b14; --surfaceD: #0b1510; --fieldBg: #0c1912; --copyBg: #102016;
+      --chipBase: #0f2016; --good: #39ff88; --warn: #ffd166; --bad: #ff8aa6;
+    }
+
+    /* [big shot] — Pink & Yellow theme */
+    body[data-theme="bigshot"] {
+      --flashBlue: #ff6ec7; /* pink glow */
+      --bg0: #2a0b22; --bg1: #3a102e; --bg2: #4a1236; --card: #2b1524;
+      --text: #fff7fb; --subtext: #ffd1eb; --primary: #ff43b0; --primary-2: #ffd84f;
+      --accent: #ffa94d; --muted: #3a1a2d; --border: 1px solid rgba(255, 105, 180, .2);
+      --radius: 14px; --shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05);
+      --activeNavBg: #3b1530; --btnBg: linear-gradient(135deg, var(--primary), var(--primary-2));
+      --btnSecondary: #432036; --surfaceA: #3a1830; --surfaceB: #2c1225;
+      --surfaceC: #3a1a31; --surfaceD: #301426; --fieldBg: #34182a; --copyBg: #3b1b2f;
+      --chipBase: #3d1d32; --good: #ffd84f; --warn: #ffea8a; --bad: #ff9ab3;
     }
 
     * { box-sizing: border-box; }
     html, body {
       height: 100%; margin: 0; color: var(--text);
-      background: radial-gradient(1200px 600px at 70% -10%, #432a8c33, transparent),
-                 radial-gradient(800px 500px at 10% 0%, #6c1b7733, transparent),
-                 linear-gradient(180deg, var(--bg1), var(--bg0));
+      background:
+        radial-gradient(1200px 600px at 70% -10%, #432a8c33, transparent),
+        radial-gradient(800px 500px at 10% 0%, #6c1b7733, transparent),
+        linear-gradient(180deg, var(--bg1), var(--bg0));
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
 
@@ -71,7 +88,7 @@
     .theme-switcher { margin: 10px 8px 0; }
     .theme-switcher select { width: 100%; background: var(--fieldBg); color: var(--text); padding: 8px 10px; border-radius: 10px; border: var(--border); }
 
-    /* Music block (locked song) */
+    /* Music block */
     .music { margin: 10px 8px 0; background: var(--fieldBg); border: var(--border); border-radius: 12px; padding: 10px; }
     .music .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     .music input[type="range"] { width: 100%; }
@@ -87,7 +104,7 @@
     .card h2 { margin: 0 0 12px; font-size: 16px; }
     .card .inner { padding: 18px; }
 
-    /* Fixed radio "buttons" */
+    /* Radio "buttons" */
     .option-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; margin-bottom: 8px; }
     label.option {
       display: inline-flex; align-items: center; gap: 10px;
@@ -120,9 +137,15 @@
     .actions { display:flex; gap:6px; }
     .small { font-size: 12px; color: var(--subtext); }
 
-    .flash { outline: 2px solid var(--flashBlue); box-shadow: 0 0 0 4px rgba(61,165,255,.25), 0 0 14px rgba(61,165,255,.6); transition: box-shadow .3s ease; }
+    /* Click flash (uses --flashBlue; green in retro, pink in bigshot) */
+    .flash {
+      outline: 2px solid var(--flashBlue);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--flashBlue) 25%, transparent),
+                  0 0 14px color-mix(in srgb, var(--flashBlue) 60%, transparent);
+      transition: box-shadow .3s ease;
+    }
 
-    /* Cooldown UI (after generation) */
+    /* Cooldown UI */
     .countdown-wrap { margin-top: 10px; }
     .progress { width: 100%; height: 8px; background: rgba(90,162,255,0.15); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); display: none; }
     .progress .bar { height: 100%; width: 0%; background: var(--accent); transition: width 0.1s linear; }
@@ -140,8 +163,8 @@
       <div class="brand">
         <img class="logo" src="https://i.ibb.co/KxQmZrkm/Togore-art-2-removebg-preview.png" alt="Togore logo" loading="lazy" referrerpolicy="no-referrer" />
         <div class="title">
-          <div>Togore Alt Gen</div>
-          <small>IT WORKS!11!!!! (somehow)</small>
+          <div class="brand-name">Togore Alt Gen</div>
+          <small class="brand-sub">IT WORKS!11!!!! (somehow)</small>
         </div>
       </div>
 
@@ -156,6 +179,7 @@
             <option value="dark">Default (Black & Blue)</option>
             <option value="light">Light</option>
             <option value="retro">Retro</option>
+            <option value="bigshot">[big shot]</option>
           </select>
         </div>
 
@@ -176,7 +200,7 @@
         <a href="https://discord.gg/SzQPx8Zhxc" target="_blank" rel="noopener"><span>💬</span>Discord</a>
 
         <div style="padding:10px 12px; margin-top: 10px; border-top: var(--border);" class="small">
-          Generates fake data locally. No real services used.
+          Togore alt genᵀᴹ 2025 - 2025
         </div>
       </div>
     </aside>
@@ -195,14 +219,15 @@
           <div class="card">
             <div class="inner">
               <h2>Account Type Selection</h2>
-              <div class="muted">Free alts. Usernames and passwords.</div>
+              <!-- changed text -->
+              <div class="muted">create your alt here!</div>
 
               <div class="option-row">
                 <label class="option"><input type="radio" name="type" value="alt" checked /> Alt</label>
                 <label class="option"><input type="radio" name="type" value="random" /> Random</label>
               </div>
 
-              <div class="muted">e</div>
+              <div class="muted">create the account with the info!</div>
 
               <div style="display:flex; gap:10px; margin-top:14px;">
                 <button id="generateBtn" class="btn row">Generate Account</button>
@@ -293,7 +318,7 @@
     </main>
   </div>
 
-  <!-- Native audio (locked to your direct MP3) -->
+  <!-- Native audio (music switches per theme) -->
   <audio id="bgm" preload="auto" loop style="display:none"></audio>
 
   <script>
@@ -302,10 +327,18 @@
     const THEME_KEY = 'togore-theme';
     const STATUS_LABEL = 'Working if you make the account yourself';
 
-    // Music (locked to one URL)
+    // Logos and names
+    const LOGO_DEFAULT = 'https://i.ibb.co/KxQmZrkm/Togore-art-2-removebg-preview.png';
+    const LOGO_BIGSHOT = 'https://i.ibb.co/HTffXKLk/Spamton-battle-static.png';
+    const NAME_DEFAULT = 'Togore Alt Gen';
+    const NAME_BIGSHOT = 'spamton alt gen';
+    const BIGSHOT_PHRASE = "now's your chance to be a big shot!";
+
+    // Music settings
     const MUSIC_ENABLED_KEY = 'togore-music-enabled';
     const MUSIC_VOLUME_KEY  = 'togore-music-volume';
-    const MUSIC_URL = 'https://www.dropbox.com/scl/fi/1vs8cqi0bxsiikz73jpxf/TOGORE-TUSSLE-TheDanypie-SoundLoadMate.com.mp3?rlkey=x4n6mxpvqsz6vngj0kqs7dxir&raw=1';
+    const MUSIC_URL_DEFAULT = 'https://www.dropbox.com/scl/fi/1vs8cqi0bxsiikz73jpxf/TOGORE-TUSSLE-TheDanypie-SoundLoadMate.com.mp3?rlkey=x4n6mxpvqsz6vngj0kqs7dxir&raw=1';
+    const MUSIC_URL_BIGSHOT = 'https://www.dropbox.com/scl/fi/mgy8qmoot9kt27fqin8b3/SpotiDownloader.com-NOW-S-YOUR-CHANCE-TO-BE-A-Toby-Fox.mp3?rlkey=k7d0mq0e13mi07pcbz1z34ind&raw=1';
 
     // Generate cooldown (5s)
     const GEN_COOLDOWN_MS = 5000;
@@ -449,7 +482,7 @@
     }
 
     function clearAll(){
-      if(!confirm('Clear all accounts?')) return;
+      if(!confirm('remove accounts?')) return;
       state.accounts=[]; state.current=null; persist(); calcStats(); renderCurrent();
       renderAllTable(document.getElementById('filterInput')?.value||'');
     }
@@ -459,26 +492,69 @@
       const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='togore-beta-accounts.json'; a.click(); URL.revokeObjectURL(url);
     }
 
-    function switchView(view){
-      state.view=view;
-      document.getElementById('view-generate').style.display=(view==='generate')?'block':'none';
-      document.getElementById('view-accounts').style.display=(view==='accounts')?'block':'none';
-      document.querySelectorAll('.nav a[data-view]').forEach(a=>a.classList.toggle('active',a.dataset.view===view));
-      flashBlue(document.querySelector(`.nav a[data-view="${view}"]`)); calcStats();
-      if(view==='accounts') renderAllTable(document.getElementById('filterInput')?.value||'');
+    function flashBlue(el){ if(!el) return; el.classList.add('flash'); setTimeout(()=>el.classList.remove('flash'),1500); }
+
+    // Brand + Big Shot text replacement
+    function updateBrandForTheme(theme){
+      const logoEl = document.querySelector('.brand .logo');
+      const nameEl = document.querySelector('.brand-name');
+      if (theme === 'bigshot') {
+        if (!logoEl.dataset.orig) logoEl.dataset.orig = logoEl.src;
+        if (!nameEl.dataset.orig) nameEl.dataset.orig = nameEl.textContent;
+        logoEl.src = LOGO_BIGSHOT;
+        nameEl.textContent = NAME_BIGSHOT;
+      } else {
+        if (logoEl.dataset.orig) logoEl.src = logoEl.dataset.orig;
+        if (nameEl.dataset.orig) nameEl.textContent = nameEl.dataset.orig;
+      }
     }
 
-    function flashBlue(el){ if(!el) return; el.classList.add('flash'); setTimeout(()=>el.classList.remove('flash'),1500); }
-    function applyTheme(t){ document.body.setAttribute('data-theme',t); localStorage.setItem(THEME_KEY,t); const sel=document.getElementById('themeSelect'); if(sel&&sel.value!==t) sel.value=t; }
+    // Replace a bunch of visible texts with the Big Shot phrase (and restore)
+    const BS_SELECTORS = [
+      '.brand-sub',
+      '.card h2',
+      '.muted',
+      '.btn',
+      '.stat h3',
+      '.field label',
+      '.status-row .chip',
+      'th',
+      'h4' // section headers in sidebar
+    ];
+    function bigshotChant(enable){
+      const list = document.querySelectorAll(BS_SELECTORS.join(','));
+      list.forEach(el => {
+        // Preserve radio labels' inputs
+        if (el.matches('label.option')) return;
+        if (enable) {
+          if (!el.dataset.origText) el.dataset.origText = el.textContent;
+          el.textContent = BIGSHOT_PHRASE;
+        } else if (el.dataset.origText) {
+          el.textContent = el.dataset.origText;
+          delete el.dataset.origText;
+        }
+      });
+      // Special-case radio labels (keep inputs intact)
+      document.querySelectorAll('label.option').forEach(label => {
+        const input = label.querySelector('input');
+        if (enable) {
+          if (!label.dataset.origHtml) label.dataset.origHtml = label.innerHTML;
+          label.innerHTML = input.outerHTML + ' ' + BIGSHOT_PHRASE;
+        } else if (label.dataset.origHtml) {
+          label.innerHTML = label.dataset.origHtml;
+          delete label.dataset.origHtml;
+        }
+      });
+    }
 
-    // MUSIC (locked direct MP3)
+    // MUSIC
     function initMusic() {
       const audio = document.getElementById('bgm');
       const toggle = document.getElementById('musicToggle');
       const vol = document.getElementById('musicVol');
       const statusEl = document.getElementById('musicStatus');
 
-      audio.src = MUSIC_URL;
+      audio.src = MUSIC_URL_DEFAULT;
 
       const savedVol = parseFloat(localStorage.getItem(MUSIC_VOLUME_KEY) || '0.5');
       const volVal = isNaN(savedVol) ? 0.5 : savedVol;
@@ -517,9 +593,49 @@
       });
 
       audio.addEventListener('error', () => {
+        const statusEl = document.getElementById('musicStatus');
         statusEl.textContent = 'Could not load audio. Check the link or host.';
         statusEl.style.color = 'var(--bad)';
       });
+    }
+
+    function updateMusicForTheme(theme){
+      const audio = document.getElementById('bgm');
+      const toggle = document.getElementById('musicToggle');
+      const statusEl = document.getElementById('musicStatus');
+      const url = (theme === 'bigshot') ? MUSIC_URL_BIGSHOT : MUSIC_URL_DEFAULT;
+
+      if (audio.src !== url) {
+        const wasPlaying = !audio.paused;
+        audio.pause();
+        audio.src = url;
+        statusEl.textContent = (theme === 'bigshot') ? "Track: BIG SHOT" : "Track: Default";
+        statusEl.style.color = 'var(--subtext)';
+        if (toggle.checked || wasPlaying) {
+          audio.play().catch(()=>{});
+          statusEl.textContent = 'Playing';
+          statusEl.style.color = 'var(--good)';
+        }
+      }
+    }
+
+    function applyTheme(t){
+      document.body.setAttribute('data-theme', t);
+      localStorage.setItem(THEME_KEY, t);
+      const sel = document.getElementById('themeSelect');
+      if (sel && sel.value !== t) sel.value = t;
+      updateMusicForTheme(t);
+      updateBrandForTheme(t);
+      bigshotChant(t === 'bigshot');
+    }
+
+    function switchView(view){
+      state.view=view;
+      document.getElementById('view-generate').style.display=(view==='generate')?'block':'none';
+      document.getElementById('view-accounts').style.display=(view==='accounts')?'block':'none';
+      document.querySelectorAll('.nav a[data-view]').forEach(a=>a.classList.toggle('active',a.dataset.view===view));
+      flashBlue(document.querySelector(`.nav a[data-view="${view}"]`)); calcStats();
+      if(view==='accounts') renderAllTable(document.getElementById('filterInput')?.value||'');
     }
 
     document.addEventListener('click',(e)=>{
@@ -539,9 +655,13 @@
     document.getElementById('filterInput').addEventListener('input', e=>renderAllTable(e.target.value));
     document.getElementById('themeSelect').addEventListener('change', e=>applyTheme(e.target.value));
 
-    load(); applyTheme(localStorage.getItem(THEME_KEY) || 'dark'); calcStats(); renderCurrent(); renderAllTable(''); switchView('generate');
+    load();
     initMusic();
-    restoreCooldown(); // restore cooldown if the page was refreshed
+    const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+    applyTheme(savedTheme);
+    calcStats(); renderCurrent(); renderAllTable('');
+    switchView('generate');
+    restoreCooldown();
   </script>
 </body>
 </html>
