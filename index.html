@@ -1,210 +1,547 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roblox Alt Generator</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Togore Alt Gen</title>
+
+  <!-- Website icon (favicon) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/KxQmZrkm/Togore-art-2-removebg-preview.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://i.ibb.co/KxQmZrkm/Togore-art-2-removebg-preview.png">
+  <link rel="apple-touch-icon" href="https://i.ibb.co/KxQmZrkm/Togore-art-2-removebg-preview.png">
+  <link rel="shortcut icon" href="https://i.ibb.co/KxQmZrkm/Togore-art-2-removebg-preview.png">
+  <meta name="theme-color" content="#13133e">
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #111;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+    :root { --flashBlue: #3da5ff; }
+
+    /* Default (Black & Blue) */
+    body[data-theme="dark"] {
+      --bg0: #0b0b2a; --bg1: #13133e; --bg2: #1d1d55; --card: #1a1a3a;
+      --text: #e9e9ff; --subtext: #a9a9d9; --primary: #8a63f7; --primary-2: #ff4bc2;
+      --accent: #5aa2ff; --muted: #2a2a56; --border: 1px solid rgba(255,255,255,0.08);
+      --radius: 14px; --shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.03);
+      --activeNavBg: #2a2556; --btnBg: linear-gradient(135deg, var(--primary), var(--primary-2));
+      --btnSecondary: #2a2760; --surfaceA: #1d1845; --surfaceB: #151236;
+      --surfaceC: #1c1844; --surfaceD: #141233; --fieldBg: #191741; --copyBg: #242158;
+      --chipBase: #232158; --good: #3bd4a5; --warn: #ffcc66; --bad: #ff6b6b;
     }
-    .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      max-width: 900px;
-      width: 100%;
-      background: #222;
-      padding: 20px;
-      border-radius: 12px;
+    /* Light */
+    body[data-theme="light"] {
+      --bg0: #f5f7ff; --bg1: #eef1ff; --bg2: #dde4ff; --card: #ffffff;
+      --text: #1a1a2b; --subtext: #5a5a80; --primary: #5e6bff; --primary-2: #9a7cff;
+      --accent: #007aff; --muted: #e9ecff; --border: 1px solid rgba(20,20,60,0.08);
+      --radius: 14px; --shadow: 0 10px 30px rgba(0,0,0,0.06), inset 0 0 0 1px rgba(0,0,0,0.02);
+      --activeNavBg: #e8ecff; --btnBg: linear-gradient(135deg, var(--primary), var(--primary-2));
+      --btnSecondary: #edf0ff; --surfaceA: #ffffff; --surfaceB: #f6f7ff;
+      --surfaceC: #ffffff; --surfaceD: #ffffff; --fieldBg: #f1f3ff; --copyBg: #e8ebff;
+      --chipBase: #edf0ff; --good: #17b890; --warn: #d9931c; --bad: #e05252;
     }
-    .card {
-      background: #333;
-      padding: 20px;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
+    /* Retro */
+    body[data-theme="retro"] {
+      --bg0: #0f0b1f; --bg1: #1a103b; --bg2: #240d47; --card: #1b1438;
+      --text: #f0eaff; --subtext: #c2b6ff; --primary: #ff00d4; --primary-2: #00fff0;
+      --accent: #28a8ff; --muted: #2b1a66; --border: 1px solid rgba(255,255,255,0.08);
+      --radius: 14px; --shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.04);
+      --activeNavBg: #2a1566; --btnBg: linear-gradient(135deg, var(--primary), var(--primary-2));
+      --btnSecondary: #2a1a60; --surfaceA: #23124e; --surfaceB: #1a0d3c;
+      --surfaceC: #241052; --surfaceD: #1b0e3b; --fieldBg: #1d1443; --copyBg: #26185a;
+      --chipBase: #2a1860; --good: #60ffcf; --warn: #ffd166; --bad: #ff8aa6;
     }
-    h1, h2 {
-      margin: 0 0 10px;
+
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%; margin: 0; color: var(--text);
+      background: radial-gradient(1200px 600px at 70% -10%, #432a8c33, transparent),
+                 radial-gradient(800px 500px at 10% 0%, #6c1b7733, transparent),
+                 linear-gradient(180deg, var(--bg1), var(--bg0));
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
-    input {
-      width: 100%;
-      padding: 8px;
-      margin: 5px 0;
-      border-radius: 6px;
-      border: none;
+
+    .app { display: grid; grid-template-columns: 260px 1fr; gap: 24px; padding: 24px; height: 100%; }
+    .sidebar { background: linear-gradient(180deg, var(--surfaceC), var(--surfaceD)); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: 0.2px; margin-bottom: 16px; }
+    .brand .logo { width: 32px; height: 32px; border-radius: 8px; object-fit: contain; display: block; background: transparent; border: none; filter: drop-shadow(0 2px 6px rgba(0,0,0,.35)); }
+    .brand .title { display: flex; flex-direction: column; line-height: 1.1; }
+    .brand small { color: var(--subtext); font-weight: 600; }
+
+    .nav h4 { margin: 18px 10px 8px; color: var(--subtext); font-weight: 600; font-size: 12px; letter-spacing: 0.6px; text-transform: uppercase; }
+    .nav a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; margin: 4px 6px; color: var(--text); text-decoration: none; border-radius: 10px; }
+    .nav a.active, .nav a:hover { background: var(--activeNavBg); }
+    .theme-switcher { margin: 10px 8px 0; }
+    .theme-switcher select { width: 100%; background: var(--fieldBg); color: var(--text); padding: 8px 10px; border-radius: 10px; border: var(--border); }
+
+    /* Music block (locked song) */
+    .music { margin: 10px 8px 0; background: var(--fieldBg); border: var(--border); border-radius: 12px; padding: 10px; }
+    .music .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .music input[type="range"] { width: 100%; }
+
+    .content { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+    .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .stat { background: linear-gradient(180deg, var(--surfaceA), var(--surfaceB)); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); }
+    .stat h3 { margin: 0; font-size: 12px; color: var(--subtext); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+    .stat p { margin: 6px 0 0; font-size: 20px; font-weight: 700; }
+
+    .grid { display: grid; grid-template-columns: minmax(300px, 420px) 1fr; gap: 24px; align-items: start; }
+    .card { background: linear-gradient(180deg, var(--surfaceC), var(--surfaceD)); border-radius: var(--radius); box-shadow: var(--shadow); border: var(--border); }
+    .card h2 { margin: 0 0 12px; font-size: 16px; }
+    .card .inner { padding: 18px; }
+
+    /* Fixed radio "buttons" */
+    .option-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; margin-bottom: 8px; }
+    label.option {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 16px; white-space: nowrap; min-height: 40px;
+      background: var(--fieldBg); border: var(--border); border-radius: 14px;
+      line-height: 1.25; user-select: none;
     }
-    button {
-      padding: 8px 14px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .generate {
-      background: #007bff;
-      color: white;
-    }
-    .export-btns button {
-      background: #555;
-      color: white;
-      margin-right: 5px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    th, td {
-      padding: 6px;
-      border-bottom: 1px solid #444;
-    }
-    .account-list-wrapper {
-      margin-top: 10px;
-      flex: 1;
-      overflow-y: auto;
-      max-height: 300px;
-    }
-    .popup {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #444;
-      padding: 10px 15px;
-      border-radius: 8px;
-      display: none;
-      color: white;
+    .option input { margin: 0; accent-color: var(--accent); }
+
+    .muted { color: var(--subtext); font-size: 13px; }
+
+    .btn { background: var(--btnBg); border: none; color: white; padding: 12px 18px; border-radius: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 20px rgba(138,99,247,.35); line-height: 1.25; display: inline-flex; align-items: center; gap: 8px; }
+    .btn:active { transform: translateY(1px); }
+    .btn.secondary { background: var(--btnSecondary); box-shadow: none; color: var(--text); }
+    .btn.row { display:inline-flex; align-items:center; gap:8px; }
+    .btn[disabled] { opacity: 0.65; cursor: not-allowed; filter: grayscale(0.2); }
+
+    .field { display: grid; grid-template-columns: 220px 1fr auto; gap: 10px; align-items: center; margin: 12px 0; }
+    .field label { color: var(--subtext); font-size: 13px; }
+    .value { background: var(--fieldBg); border-radius: 10px; padding: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .copy { background: var(--copyBg); color: var(--text); border: none; border-radius: 10px; padding: 8px 10px; cursor: pointer; line-height: 1.25; }
+
+    .status-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .chip { padding: 8px 10px; border-radius: 999px; font-size: 12px; background: var(--chipBase); }
+    .chip.good { background: rgba(59,212,165,.12); color: var(--good); border: 1px solid rgba(59,212,165,.3); }
+
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    th { color: var(--subtext); font-size: 12px; text-transform: uppercase; letter-spacing: .6px; }
+    .actions { display:flex; gap:6px; }
+    .small { font-size: 12px; color: var(--subtext); }
+
+    .flash { outline: 2px solid var(--flashBlue); box-shadow: 0 0 0 4px rgba(61,165,255,.25), 0 0 14px rgba(61,165,255,.6); transition: box-shadow .3s ease; }
+
+    /* Cooldown UI (after generation) */
+    .countdown-wrap { margin-top: 10px; }
+    .progress { width: 100%; height: 8px; background: rgba(90,162,255,0.15); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); display: none; }
+    .progress .bar { height: 100%; width: 0%; background: var(--accent); transition: width 0.1s linear; }
+
+    @media (max-width: 1000px) {
+      .app { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
-<body>
-  <div class="popup" id="popup">New account generated!</div>
-  <div class="container">
-    <!-- Settings Panel -->
-    <div class="card">
-      <h1>Togore Alt Gen</h1>
-      <p>Offline, private username/password generator for testing apps. No data leaves your device unless you export it.</p>
-
-      <label>Generated Username</label>
-      <input type="text" id="username" readonly>
-
-      <label>Generated Password</label>
-      <input type="text" id="password" readonly>
-
-      <button class="generate" onclick="handleGenerate()">Generate</button>
-      <p style="font-size: 12px; color: gray;">⚠️ This tool is for fun and personal use only — not for ban evasion or violating Roblox rules.</p>
-    </div>
-
-    <!-- Results Panel -->
-    <div class="card">
-      <h2>Generated Accounts</h2>
-      <div class="export-btns">
-        <button onclick="copyAll()">Copy All</button>
-        <button onclick="exportCSV()">Export CSV</button>
-        <button onclick="exportJSON()">Export JSON</button>
+<body data-theme="dark">
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <img class="logo" src="https://i.ibb.co/KxQmZrkm/Togore-art-2-removebg-preview.png" alt="Togore logo" loading="lazy" referrerpolicy="no-referrer" />
+        <div class="title">
+          <div>Togore Alt Gen</div>
+          <small>IT WORKS!11!!!! (somehow)</small>
+        </div>
       </div>
 
-      <div class="account-list-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Username</th>
-              <th>Password</th>
-            </tr>
-          </thead>
-          <tbody id="accountList">
-            <tr><td colspan="2" style="text-align:center;">No accounts generated yet.</td></tr>
-          </tbody>
-        </table>
+      <div class="nav">
+        <h4>Dashboard</h4>
+        <a class="active" href="#" data-view="generate"><span>⚡</span>Generate</a>
+        <a href="#" data-view="accounts"><span>📒</span>Accounts</a>
+
+        <h4>Theme</h4>
+        <div class="theme-switcher">
+          <select id="themeSelect" aria-label="Theme">
+            <option value="dark">Default (Black & Blue)</option>
+            <option value="light">Light</option>
+            <option value="retro">Retro</option>
+          </select>
+        </div>
+
+        <h4>Music</h4>
+        <div class="music">
+          <div class="row">
+            <span>Play music</span>
+            <input type="checkbox" id="musicToggle" />
+          </div>
+          <div class="row" style="gap:8px; margin:6px 0 4px;">
+            <span class="small" style="min-width:52px;">Volume</span>
+            <input type="range" id="musicVol" min="0" max="1" step="0.01" value="0.5" />
+          </div>
+          <div id="musicStatus" class="small" style="margin-top:6px;"></div>
+        </div>
+
+        <h4>Social</h4>
+        <a href="https://discord.gg/SzQPx8Zhxc" target="_blank" rel="noopener"><span>💬</span>Discord</a>
+
+        <div style="padding:10px 12px; margin-top: 10px; border-top: var(--border);" class="small">
+          Generates fake data locally. No real services used.
+        </div>
       </div>
-    </div>
+    </aside>
+
+    <main class="content">
+      <section id="view-generate">
+        <section class="stats">
+          <div class="stat"><h3>Streak</h3><p id="streak">0</p></div>
+          <div class="stat"><h3>Today</h3><p id="today">0</p></div>
+          <div class="stat"><h3>Week</h3><p id="week">0</p></div>
+          <div class="stat"><h3>Month</h3><p id="month">0</p></div>
+          <div class="stat"><h3>Total</h3><p id="total">0</p></div>
+        </section>
+
+        <section class="grid">
+          <div class="card">
+            <div class="inner">
+              <h2>Account Type Selection</h2>
+              <div class="muted">Free alts. Usernames and passwords.</div>
+
+              <div class="option-row">
+                <label class="option"><input type="radio" name="type" value="alt" checked /> Alt</label>
+                <label class="option"><input type="radio" name="type" value="random" /> Random</label>
+              </div>
+
+              <div class="muted">e</div>
+
+              <div style="display:flex; gap:10px; margin-top:14px;">
+                <button id="generateBtn" class="btn row">Generate Account</button>
+                <button id="clearBtn" class="btn secondary">Clear All</button>
+                <button id="exportBtn" class="btn secondary">Export JSON</button>
+              </div>
+
+              <!-- Cooldown UI -->
+              <div class="countdown-wrap small" id="genCountdownText" style="display:none; color: var(--subtext); margin-top:8px;"></div>
+              <div class="progress" id="genProgressWrap"><div class="bar" id="genProgressBar"></div></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="inner">
+              <h2 id="cardTitle">Generated Account</h2>
+
+              <div class="field">
+                <label>Username</label>
+                <div id="username" class="value">—</div>
+                <button data-copy="username" class="copy">📋</button>
+              </div>
+
+              <div class="field">
+                <label>Password</label>
+                <div id="password" class="value">—</div>
+                <button data-copy="password" class="copy">📋</button>
+              </div>
+
+              <div class="field">
+                <label>Combo (u:p)</label>
+                <div id="combo" class="value">—</div>
+                <button data-copy="combo" class="copy">📋</button>
+              </div>
+
+              <div class="field">
+                <label>Account ID</label>
+                <div id="accountId" class="value">—</div>
+                <button data-copy="accountId" class="copy">📋</button>
+              </div>
+
+              <div class="field">
+                <label>Created</label>
+                <div id="created" class="value">—</div>
+                <button data-copy="created" class="copy">📋</button>
+              </div>
+
+              <div class="field">
+                <label>Status</label>
+                <div class="status-row">
+                  <span class="chip good" id="statusWorking">Working if you make the account yourself</span>
+                </div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section id="view-accounts" style="display:none;">
+        <section class="card">
+          <div class="inner">
+            <h2>All Accounts</h2>
+            <div class="small" style="margin-bottom:10px;">
+              Total: <span id="countAll">0</span>
+              <span style="margin-left:12px;">Filter:</span>
+              <input id="filterInput" placeholder="Search username..." style="background: var(--fieldBg); color: var(--text); border: var(--border); border-radius: 8px; padding: 6px 8px;"/>
+              <button id="exportBtn2" class="btn secondary" style="margin-left:8px;">Export JSON</button>
+              <button id="clearBtn2" class="btn secondary">Clear All</button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Username</th>
+                  <th>Password</th>
+                  <th>Type</th>
+                  <th>Account ID</th>
+                  <th>Created</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyAll"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
   </div>
 
+  <!-- Native audio (locked to your direct MP3) -->
+  <audio id="bgm" preload="auto" loop style="display:none"></audio>
+
   <script>
-    let accounts = JSON.parse(localStorage.getItem("robloxAltAccounts")) || [];
+    const state = { accounts: [], current: null, view: 'generate' };
+    const LS_KEY = 'togore-accounts-v1';
+    const THEME_KEY = 'togore-theme';
+    const STATUS_LABEL = 'Working if you make the account yourself';
 
-    function showPopup(msg) {
-      const popup = document.getElementById("popup");
-      popup.innerText = msg;
-      popup.style.display = "block";
-      setTimeout(() => popup.style.display = "none", 2000);
+    // Music (locked to one URL)
+    const MUSIC_ENABLED_KEY = 'togore-music-enabled';
+    const MUSIC_VOLUME_KEY  = 'togore-music-volume';
+    const MUSIC_URL = 'https://www.dropbox.com/scl/fi/1vs8cqi0bxsiikz73jpxf/TOGORE-TUSSLE-TheDanypie-SoundLoadMate.com.mp3?rlkey=x4n6mxpvqsz6vngj0kqs7dxir&raw=1';
+
+    // Generate cooldown (5s)
+    const GEN_COOLDOWN_MS = 5000;
+    const COOLDOWN_KEY = 'togore-genCooldownEnd';
+    let cooldownTimer = null;
+
+    function load() { try { state.accounts = JSON.parse(localStorage.getItem(LS_KEY) || '[]'); } catch { state.accounts = []; } }
+    function persist() { localStorage.setItem(LS_KEY, JSON.stringify(state.accounts)); }
+
+    const adjectives = ['Ultra','Frost','Cosmic','Nebula','Quantum','Echo','Shadow','Crimson','Pixel','Glitch','Aqua','Blaze','Nova','Arc','Lunar','Solar','Drift','Swift','Vortex','Nimbus','Cyber','Arctic','Turbo','Phantom','Zen','Omega','Delta','Silent','Rapid','Mellow','Primal','Iron','Copper','Golden','Emerald','Sapphire','Ruby','Ivory','Obsidian','Cobalt','Scarlet','Azure','Indigo','Vivid','Wild','Feral','Misty','Stormy','Frozen','Blazing','Hidden','Stealth','Arcane','Mythic','Galactic','Atomic','Hyper','Micro','Nano','Mega','Giga','Terra','Stellar','Polar','Breezy','Windy','Electric','Neon','Retro','Analog','Digital','Holo','Prime','Fuzzy','Funky','Velvet'];
+    const nouns = ['Raven','Tiger','Falcon','Blizzard','Comet','Rider','Knight','Ninja','Wizard','Voyager','Spectre','Pioneer','Saber','Echo','Ranger','Samurai','Sentinel','Drifter','Golem','Warden','Skipper','Quasar','Otter','Wolf','Eagle','Viper','Panther','Fox','Hawk','Cobra','Dragon','Phoenix','Hydra','Griffin','Mammoth','Yeti','Kraken','Badger','Bear','Bison','Shark','Piranha','Dolphin','Narwhal','Orca','Puma','Jaguar','Lynx','Leopard','Cheetah','Rhino','Stallion','Mustang','Raptor','Meteor','Astro','Rocket','Saturn','Neptune','Pluto','Cipher','Matrix','Agent','Scout','Miner','Pilot','Captain','Sailor','Scribe','Nomad','Hermit','Gunner','Sniper','Coder','Builder','Crafter','Smith'];
+    const symbols = '!@#$%^&*()_+{}[]<>?';
+    const digits  = '0123456789';
+    const lowers  = 'abcdefghijklmnopqrstuvwxyz';
+    const uppers  = lowers.toUpperCase();
+    const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+    const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+    function randomUsername(type='alt') {
+      const year = type === 'alt' ? rand(2020, new Date().getFullYear()) : rand(2015, new Date().getFullYear());
+      return `${pick(adjectives)}${pick(nouns)}${year}${rand(10, 99)}`;
+    }
+    function strongPassword(len=16) {
+      function take(s) { return s[rand(0, s.length-1)]; }
+      const pool = uppers + lowers + digits + symbols;
+      const out = [take(uppers), take(lowers), take(digits), take(symbols)];
+      while (out.length < len) out.push(take(pool));
+      for (let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}
+      return out.join('');
+    }
+    function randomAccountId(){ let s=''; for(let i=0;i<rand(9,10);i++) s+=digits[rand(0,9)]; return s; }
+    function randomDate(type){ const start=new Date(type==='random'?'2015-01-01':'2020-01-01'); const end=new Date(); return new Date(start.getTime()+Math.random()*(end.getTime()-start.getTime())); }
+    function fmtDate(d){ return d.toLocaleString([], {year:'numeric', month:'short', day:'2-digit', hour:'2-digit', minute:'2-digit'}); }
+
+    function calcStats(){
+      const now=new Date(); const startToday=new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+      const startWeek=startToday-6*24*3600*1000; const startMonth=new Date(now.getFullYear(), now.getMonth(), 1).getTime();
+      let today=0, week=0, month=0, total=state.accounts.length; const byDay=new Set();
+      for(const a of state.accounts){ const t=new Date(a.createdAt).getTime(); const dayKey=new Date(new Date(a.createdAt).toDateString()).getTime();
+        byDay.add(dayKey); if(t>=startToday) today++; if(t>=startWeek) week++; if(t>=startMonth) month++; }
+      let streak=0; const days=[...byDay].sort((a,b)=>b-a); let cursor=startToday;
+      for(const d of days){ if(d===cursor){ streak++; cursor-=24*3600*1000; } else if(d<cursor) break; }
+      const set=(id,v)=>{const el=document.getElementById(id); if(el) el.textContent=v;};
+      set('today',today); set('week',week); set('month',month); set('total',total); set('streak',streak); set('countAll',total);
     }
 
-    function generateUsername() {
-      const adjectives = ["Cool", "Fast", "Epic", "Dark", "Happy", "Mega", "Ultra"];
-      const nouns = ["Builder", "Noob", "Warrior", "Knight", "Player", "Dev"];
-      const numbers = Math.floor(Math.random() * 9999);
-      return adjectives[Math.floor(Math.random() * adjectives.length)] +
-             nouns[Math.floor(Math.random() * nouns.length)] +
-             numbers;
+    function renderCurrent(){
+      const a=state.current, set=(id,v)=>{const el=document.getElementById(id); if(el) el.textContent=v??'—';};
+      if(!a){ set('username','—'); set('password','—'); set('combo','—'); set('accountId','—'); set('created','—');
+        document.getElementById('cardTitle').textContent='Generated Account'; document.getElementById('statusWorking').textContent=STATUS_LABEL; return; }
+      set('username',a.username); set('password',a.password); set('combo',`${a.username}:${a.password}`);
+      set('accountId',a.accountId); set('created',fmtDate(new Date(a.createdAt)));
+      document.getElementById('cardTitle').textContent = a.username;
+      document.getElementById('statusWorking').textContent = STATUS_LABEL;
     }
 
-    function generatePassword() {
-      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
-      let pass = "";
-      for (let i = 0; i < 12; i++) pass += chars.charAt(Math.floor(Math.random() * chars.length));
-      return pass;
-    }
-
-    function handleGenerate() {
-      const username = generateUsername();
-      const password = generatePassword();
-      document.getElementById("username").value = username;
-      document.getElementById("password").value = password;
-      accounts.push({ username, password });
-      localStorage.setItem("robloxAltAccounts", JSON.stringify(accounts));
-      renderAccounts();
-      showPopup("New account generated!");
-    }
-
-    function renderAccounts() {
-      const list = document.getElementById("accountList");
-      list.innerHTML = "";
-      if (accounts.length === 0) {
-        list.innerHTML = '<tr><td colspan="2" style="text-align:center;">No accounts generated yet.</td></tr>';
-        return;
+    function renderAllTable(filter=''){
+      const tbody=document.getElementById('tbodyAll'); if(!tbody) return;
+      tbody.innerHTML=''; const rows=state.accounts.filter(a=>a.username.toLowerCase().includes(filter.toLowerCase())).slice().reverse();
+      for(const a of rows){
+        const tr=document.createElement('tr');
+        tr.innerHTML=`
+          <td>${a.username}</td>
+          <td class="small">${a.password}</td>
+          <td class="small">${a.type}</td>
+          <td>${a.accountId}</td>
+          <td class="small">${fmtDate(new Date(a.createdAt))}</td>
+          <td class="small">${STATUS_LABEL}</td>
+          <td class="actions">
+            <button class="copy" data-cp="${a.username}:${a.password}">Copy u:p</button>
+            <button class="copy" data-del="${a.id}">Delete</button>
+          </td>`;
+        tbody.appendChild(tr);
       }
-      accounts.forEach(acc => {
-        const row = `<tr><td>${acc.username}</td><td>${acc.password}</td></tr>`;
-        list.innerHTML += row;
+      document.getElementById('countAll').textContent = state.accounts.length;
+    }
+
+    // Generate once (then apply cooldown)
+    function onGenerateClick(){
+      const btn = document.getElementById('generateBtn');
+      if (btn.disabled) return; // still on cooldown
+      const type = document.querySelector('input[name="type"]:checked').value;
+
+      const account={ id: crypto.randomUUID?crypto.randomUUID():String(Math.random()).slice(2),
+        username: randomUsername(type), password: strongPassword(16), type,
+        accountId: randomAccountId(), createdAt: randomDate(type).toISOString(), status: STATUS_LABEL };
+      state.accounts.push(account); state.current=account; persist(); calcStats(); renderCurrent();
+      renderAllTable(document.getElementById('filterInput')?.value||''); flashBlue(btn);
+
+      startCooldown(GEN_COOLDOWN_MS);
+    }
+
+    // Cooldown helpers
+    const COOLDOWN_TEXT = 'Next generate available in';
+    function startCooldown(ms){
+      const btn = document.getElementById('generateBtn');
+      const text = document.getElementById('genCountdownText');
+      const wrap = document.getElementById('genProgressWrap');
+      const bar = document.getElementById('genProgressBar');
+
+      const end = Date.now() + ms;
+      localStorage.setItem(COOLDOWN_KEY, String(end));
+
+      btn.disabled = true;
+      wrap.style.display = 'block';
+      text.style.display = 'block';
+      bar.style.width = '0%';
+
+      if (cooldownTimer) clearInterval(cooldownTimer);
+
+      function tick(){
+        const now = Date.now();
+        const remaining = Math.max(0, end - now);
+        const remainSec = Math.ceil(remaining / 1000);
+        const pct = Math.min(100, Math.round(((ms - remaining) / ms) * 100));
+        text.textContent = `${COOLDOWN_TEXT} ${remainSec}s`;
+        bar.style.width = pct + '%';
+
+        if (remaining <= 0){
+          clearInterval(cooldownTimer);
+          btn.disabled = false;
+          text.style.display = 'none';
+          wrap.style.display = 'none';
+          text.textContent = '';
+          bar.style.width = '0%';
+          localStorage.removeItem(COOLDOWN_KEY);
+        }
+      }
+      tick();
+      cooldownTimer = setInterval(tick, 100);
+    }
+
+    function restoreCooldown(){
+      const end = parseInt(localStorage.getItem(COOLDOWN_KEY) || '0', 10);
+      const now = Date.now();
+      if (end > now){
+        startCooldown(end - now);
+      } else {
+        localStorage.removeItem(COOLDOWN_KEY);
+      }
+    }
+
+    function clearAll(){
+      if(!confirm('Clear all accounts?')) return;
+      state.accounts=[]; state.current=null; persist(); calcStats(); renderCurrent();
+      renderAllTable(document.getElementById('filterInput')?.value||'');
+    }
+
+    function exportJSON(){
+      const blob=new Blob([JSON.stringify(state.accounts,null,2)],{type:'application/json'});
+      const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='togore-beta-accounts.json'; a.click(); URL.revokeObjectURL(url);
+    }
+
+    function switchView(view){
+      state.view=view;
+      document.getElementById('view-generate').style.display=(view==='generate')?'block':'none';
+      document.getElementById('view-accounts').style.display=(view==='accounts')?'block':'none';
+      document.querySelectorAll('.nav a[data-view]').forEach(a=>a.classList.toggle('active',a.dataset.view===view));
+      flashBlue(document.querySelector(`.nav a[data-view="${view}"]`)); calcStats();
+      if(view==='accounts') renderAllTable(document.getElementById('filterInput')?.value||'');
+    }
+
+    function flashBlue(el){ if(!el) return; el.classList.add('flash'); setTimeout(()=>el.classList.remove('flash'),1500); }
+    function applyTheme(t){ document.body.setAttribute('data-theme',t); localStorage.setItem(THEME_KEY,t); const sel=document.getElementById('themeSelect'); if(sel&&sel.value!==t) sel.value=t; }
+
+    // MUSIC (locked direct MP3)
+    function initMusic() {
+      const audio = document.getElementById('bgm');
+      const toggle = document.getElementById('musicToggle');
+      const vol = document.getElementById('musicVol');
+      const statusEl = document.getElementById('musicStatus');
+
+      audio.src = MUSIC_URL;
+
+      const savedVol = parseFloat(localStorage.getItem(MUSIC_VOLUME_KEY) || '0.5');
+      const volVal = isNaN(savedVol) ? 0.5 : savedVol;
+      vol.value = volVal;
+      audio.volume = volVal;
+
+      const enabled = localStorage.getItem(MUSIC_ENABLED_KEY) === '1';
+      toggle.checked = enabled;
+      statusEl.textContent = 'Audio ready';
+      statusEl.style.color = 'var(--subtext)';
+
+      toggle.addEventListener('change', async () => {
+        localStorage.setItem(MUSIC_ENABLED_KEY, toggle.checked ? '1' : '0');
+        try {
+          if (toggle.checked) {
+            await audio.play();
+            statusEl.textContent = 'Playing';
+            statusEl.style.color = 'var(--good)';
+          } else {
+            audio.pause();
+            statusEl.textContent = 'Paused';
+            statusEl.style.color = 'var(--subtext)';
+          }
+        } catch {
+          toggle.checked = false;
+          localStorage.setItem(MUSIC_ENABLED_KEY, '0');
+          statusEl.textContent = 'Click once on the page, then toggle again (autoplay blocked).';
+          statusEl.style.color = 'var(--warn)';
+        }
+      });
+
+      vol.addEventListener('input', () => {
+        const v = parseFloat(vol.value);
+        localStorage.setItem(MUSIC_VOLUME_KEY, v.toString());
+        audio.volume = v;
+      });
+
+      audio.addEventListener('error', () => {
+        statusEl.textContent = 'Could not load audio. Check the link or host.';
+        statusEl.style.color = 'var(--bad)';
       });
     }
 
-    function copyAll() {
-      const text = accounts.map(a => `${a.username}:${a.password}`).join("\n");
-      navigator.clipboard.writeText(text);
-      showPopup("All accounts copied!");
-    }
+    document.addEventListener('click',(e)=>{
+      const t=e.target;
+      if(t.matches('button')) flashBlue(t);
+      if(t.matches('.nav a[data-view]')){ e.preventDefault(); switchView(t.dataset.view); }
+      if(t.matches('.copy') && t.dataset.copy){ const text=document.getElementById(t.dataset.copy)?.textContent ?? ''; navigator.clipboard.writeText(text); t.textContent='✅'; setTimeout(()=> t.textContent='📋',700); }
+      if(t.matches('.copy') && t.dataset.cp){ navigator.clipboard.writeText(t.dataset.cp); t.textContent='✅'; setTimeout(()=> t.textContent='Copy u:p',700); }
+      if(t.matches('.copy') && t.dataset.del){ const id=t.dataset.del; state.accounts=state.accounts.filter(a=>a.id!==id); if(state.current&&state.current.id===id) state.current=null; persist(); calcStats(); renderCurrent(); renderAllTable(document.getElementById('filterInput')?.value||''); }
+    });
 
-    function exportCSV() {
-      let csv = "Username,Password\n";
-      accounts.forEach(a => { csv += `${a.username},${a.password}\n`; });
-      const blob = new Blob([csv], { type: "text/csv" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "accounts.csv";
-      a.click();
-    }
+    document.getElementById('generateBtn').addEventListener('click', onGenerateClick);
+    document.getElementById('clearBtn').addEventListener('click', clearAll);
+    document.getElementById('exportBtn').addEventListener('click', exportJSON);
+    document.getElementById('clearBtn2').addEventListener('click', clearAll);
+    document.getElementById('exportBtn2').addEventListener('click', exportJSON);
+    document.getElementById('filterInput').addEventListener('input', e=>renderAllTable(e.target.value));
+    document.getElementById('themeSelect').addEventListener('change', e=>applyTheme(e.target.value));
 
-    function exportJSON() {
-      const blob = new Blob([JSON.stringify(accounts, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "accounts.json";
-      a.click();
-    }
-
-    renderAccounts();
+    load(); applyTheme(localStorage.getItem(THEME_KEY) || 'dark'); calcStats(); renderCurrent(); renderAllTable(''); switchView('generate');
+    initMusic();
+    restoreCooldown(); // restore cooldown if the page was refreshed
   </script>
 </body>
 </html>
